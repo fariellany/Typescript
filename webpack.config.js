@@ -55,7 +55,7 @@ module.exports = {
             query: {
               sourceMap: !isProduction,
               importLoaders: 1,
-              modules: {
+              modules: { //配置css Modules
                 localIdentName: isProduction ? '[hash:base64:5]' : '[local]__[hash:base64:5]'
               }
             }

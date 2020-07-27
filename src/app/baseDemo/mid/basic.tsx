@@ -1,3 +1,6 @@
+
+// TODO: 基本类型
+
 //any  任意类型
 let any1: any;
 any1 = 1;
@@ -20,9 +23,9 @@ console.log(arr3, arr1, arr2); // [1, 2]
 
 // enum 枚举
 enum Color {
-  Red = 2,
-  Green,
-  Blue = 'bule'
+    Red = 2,
+    Green,
+    Blue = 'bule'
 } //不设置参数就是获取下标
 let c: Color = Color.Green;
 console.log({ c }); // {c: 3}

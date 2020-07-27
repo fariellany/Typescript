@@ -6,6 +6,7 @@ import { logger, thunk } from 'app/middleware';
 export function configureStore(initialState?: RootState): Store<RootState> {
   let middleware = applyMiddleware(thunk, logger);
 
+  //打开devtools工具
   if (process.env.NODE_ENV !== 'production') {
     middleware = composeWithDevTools(middleware);
   }
