@@ -1,23 +1,29 @@
 {
+  // https://www.tslang.cn/docs/handbook/compiler-options.html 文档配置
   "compilerOptions": {
     "sourceMap": true,
     "target": "es5",
     "jsx": "react",
-    "module": "es6",
+    "module": "es6", //  // module === "AMD" or "System" or "ES6" ? "Classic" : "Node"
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "declaration": false,
     "removeComments": true,
     "noImplicitReturns": true,
-    "noUnusedLocals": true,
-    "strict": true,
+    "noUnusedLocals": false, // 忽略变量未使用的报错
+    "noUnusedParameters": false, // 若有未使用的参数则抛错。
+    "strict": false,
     "outDir": "build",
     "lib": ["es6", "es7", "dom"],
     "baseUrl": "src",
     "paths": {
       "app/*": ["./app/*"]
     },
+    "typeRoots": ["./node_modules/@types/", "./typings"], //配置全局参数
     "allowSyntheticDefaultImports": true
   },
+  "references": [{
+    "path": "src"
+  }],
   "exclude": ["build", "node_modules"]
 }

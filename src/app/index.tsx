@@ -5,7 +5,7 @@ import { hot } from 'react-hot-loader';
 import './baseDemo';
 
 export const App = hot(module)(() => (
-  <Switch>
-    <Route path="/" component={TodoApp} />
-  </Switch>
+    <Switch>
+        <Route path="/" component={TodoApp} />
+    </Switch>
 ));
