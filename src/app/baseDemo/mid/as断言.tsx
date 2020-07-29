@@ -1,5 +1,5 @@
 
-//TODO: 类型断言 值 as 类型
+// -------------------------------类型断言 --------------------------------------
 
 interface Cat {
     name: string;
@@ -17,37 +17,26 @@ function isFish(animal: Cat | Fish) {
     return false;
 }
 
-// 如果是类的话 可以使用  instanceof来判断 类型
-class ApiError extends Error {
+// -------------------------------类可以使用instanceof判断 ---------------------------
+
+// 注意 :接口不能使用  instanceof
+
+class ErrorBad { }
+
+class ApiError extends ErrorBad {
     code: number = 0;
 }
-class HttpError extends Error {
+
+class HttpError extends ErrorBad {
     statusCode: number = 200;
 }
 
-function isApiError(error: Error) {
+function isApiError1(error: ErrorBad) {
     if (error instanceof ApiError) {
         return true;
     }
     return false;
 }
-
-// 如果是接口的话，不能使用  instanceof 
-
-// interface ApiError extends Error {
-//     code: number;
-// }
-// interface HttpError extends baocError {
-//     statusCode: number;
-// }
-
-// function isApiError(error: Error) { // bao'c
-//     if (error instanceof ApiError) {
-//         return true;
-//     }
-//     return false;
-// }
-
 
 // 若 A 兼容 B，那么 A 能够被断言为 B，B 也能被断言为 A
 
@@ -58,21 +47,22 @@ function isApiError(error: Error) {
    4. any 可以被断言为任何类型
  */
 
-interface Animal {
+TODO:
+interface Animalas {
     name: string;
 }
 
-interface Cat {
+interface Catas {
     name: string;
     run(): void;
 }
 
-function testAnimal(animal: Animal) {
-    return (animal as Cat); // 父类可以被断言为子类
+function testAnimal(animal: Animalas) {
+    return (animal as Catas); // 父类可以被断言为子类
 }
 
-function testCat(cat: Cat) {
-    return (cat as Animal); // 子类可以被断言为父类
+function testCat(cat: Catas) {
+    return (cat as Animalas); // 子类可以被断言为父类
 }
 
 // TODO: 双重断言 除非迫不得已，千万别用双重断言！
@@ -89,7 +79,7 @@ function doubleCat(cat: Cat) {
     return (cat as any as Fish);
 }
 
-// 类型断言 vs 类型声明
+// -------------------------------类型断言 vs 类型声明 ----------------------------------
 function getCacheData(key: string): any {
     return (window as any).cache[key];
 }
@@ -105,7 +95,7 @@ const tom1: Cat = getCacheData('tom') //  可以直接类型声明 因为是any�
 tom.run();
 
 // 类型声明 区别
-interface Animal {
+interface Animald1 {
     name: string;
 }
 interface Cat {
@@ -113,7 +103,7 @@ interface Cat {
     run(): void;
 }
 
-const animal: Animal = {
+const animal: Animald1 = {
     name: 'tom'
 };
 let tom2 = animal as Cat;

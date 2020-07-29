@@ -10,9 +10,10 @@
     "declaration": false,
     "removeComments": true,
     "noImplicitReturns": true,
+    // "noImplicitThis": true,
     "noUnusedLocals": false, // 忽略变量未使用的报错
     "noUnusedParameters": false, // 若有未使用的参数则抛错。
-    "strict": false,
+    "strict": true,
     "outDir": "build",
     "lib": ["es6", "es7", "dom"],
     "baseUrl": "src",
@@ -22,8 +23,5 @@
     "typeRoots": ["./node_modules/@types/", "./typings"], //配置全局参数
     "allowSyntheticDefaultImports": true
   },
-  "references": [{
-    "path": "src"
-  }],
   "exclude": ["build", "node_modules"]
 }

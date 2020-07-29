@@ -1,10 +1,9 @@
 
-// TODO: 命名空间
 
 // 使用命名空间的验证器
 // 1： 如果需要在命名空间外也可访问 ，需要使用  export 导出
 // 2: 接口声明参数的类型，如果有类 implements (实现的化) 必须在类里面也声明
-namespace Validation {
+namespace Validation1 {
     // 接口声明格式类型
     export interface StringValidator {
         isAcceptable(s: string): boolean; // 声明函数方法
@@ -27,12 +26,12 @@ namespace Validation {
 }
 
 // Some samples to try
-let strings = ['Hello', '98052', '101'];
+let strings1 = ['Hello', '98052', '101'];
 
 // Validators to use
 
 // 先声明格式类型
-let validators: { [s: string]: Validation.StringValidator } = {};
+let validators1: { [s: string]: Validation.StringValidator } = {};
 validators['数字匹配'] = new Validation.ZipCodeValidator();
 validators['字母匹配'] = new Validation.LettersOnlyValidator();
 

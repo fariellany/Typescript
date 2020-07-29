@@ -1,5 +1,5 @@
 
-// TODO: interface和type区别 
+// -------------------------------相同点 --------------------------------------
 
 /**
  * Interface(接口) vs Type alias(类型别名)
@@ -8,10 +8,11 @@
  *      --->> interface extends interface (接口继承接口)
  *      --->> type extends type (类型继承类型)
  *      --->> interface extends type (接口继承类型)
- *      --->> // type extends interface (类型继承接口)
+ *      --->> type extends interface (类型继承接口)
  */
 
-// TODO:  interface
+// -------------------------------Interface --------------------------------------
+
 interface UserOP {  // 描述一个对象
     name: string;
     email: string;
@@ -30,7 +31,7 @@ mySearchXX = function (name: string, email: string, isBig: boolean, age: number)
     return pikaqiu;
 }
 
-//TODO:  type 
+// -------------------------------type----------------------------------------
 
 type UserTy = {
     name: string
@@ -48,7 +49,7 @@ mySearchXXTy = function (name: string, age: number) {
     return pikaqiu1
 }
 
-// TODO: interface extends interface (接口继承接口) 
+// -------------------------------interface extends interface  -----------------------------
 
 interface dudu1 {
     name: string
@@ -60,7 +61,7 @@ interface dudu2 extends dudu1 {
 
 const duduTest: dudu2 = { name: 'zyb', age: 23 };
 
-// TODO:  type extends type (类型继承类型)
+// -------------------------------类型继承类型 (&) --------------------------------------
 
 type Nametype = {
     name: string;
@@ -68,7 +69,7 @@ type Nametype = {
 type UserType = Nametype & { age: number };  // 使用 & 
 const valueType: UserType = { name: 'zyb', age: 23 };
 
-// TODO:  interface extends type (接口继承类型)
+// -------------------------------interface extends type -------------------------------
 
 type LulvwaType = {
     name: string
@@ -80,7 +81,7 @@ interface LulvwaFace extends LulvwaType {
 
 const LulvwaValue: LulvwaFace = { name: 'zyb', age: 23 };
 
-// TODO: type extends interface (类型继承接口)
+// -------------------------------type extends interface -----------------------------
 
 interface shajFace {
     name: string
@@ -91,6 +92,8 @@ type shajType = shajFace & { // 也是使用&
 }
 const shajValue: shajType = { name: 'zyb', age: 23 };
 
+
+// -------------------------------不同点--------------------------------------
 /**
  * Interface(接口) vs Type alias(类型别名)
  * 不同点->
@@ -115,7 +118,8 @@ type Pet = Dog | Cat
 // 元祖类型 写法
 type PetList = [Dog, Pet]
 
-// TODO: interface 能够声明合并
+
+// interface 能够声明合并
 interface DiffLx {
     name: string
 }
