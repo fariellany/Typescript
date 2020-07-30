@@ -6,7 +6,7 @@
     "jsx": "react",
     "module": "es6", //  // module === "AMD" or "System" or "ES6" ? "Classic" : "Node"
     "moduleResolution": "node",
-    "experimentalDecorators": true,
+    "experimentalDecorators": true, //开启装饰器
     "declaration": false,
     "removeComments": true,
     "noImplicitReturns": true,

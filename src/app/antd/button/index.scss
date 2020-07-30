@@ -1,0 +1,77 @@
+@import "../../../style/theme";
+
+.keep-btn {
+
+  cursor: pointer;
+  margin: 5px;
+
+  &-default {
+    background: $default-5;
+    border: $default-3 1px solid;
+    color: #fff;
+
+    &:focus,
+    &:active,
+    &::selection,
+    &:visited {
+      background: $default-7;
+      border: $default-5 1px solid;
+    }
+  }
+
+  &:hover {
+    background: $default-6;
+    border: $default-5 1px solid;
+  }
+
+
+  &-normal {
+    background: #fff;
+    border: $default-5 1px solid;
+    color: $default-5;
+
+    &:focus,
+    &:active,
+    &::selection,
+    &:visited {
+      border: $default-3 1px solid;
+      color: $default-3;
+    }
+  }
+
+  &-danger {
+    background: red;
+    border: red 1px solid;
+    color: #fff;
+
+    &:focus,
+    &:active,
+    &::selection,
+    &:visited {
+      border: red 1px solid;
+      color: #fff;
+    }
+  }
+
+  &-sm {
+    padding: 0 13px;
+    border-radius: 5px;
+    height: 25px;
+    font-size: 12px;
+  }
+
+  &-xm {
+    padding: 0 15px;
+    font-size: 13px;
+    border-radius: 5px;
+    height: 30px;
+  }
+
+  &-lg {
+    font-size: 14px;
+    padding: 0 18px;
+    border-radius: 5px;
+    height: 35px;
+  }
+
+}

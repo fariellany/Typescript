@@ -5,10 +5,10 @@ interface Person {
     name: string;
     age?: number;
 }
+// -------------------------------  高级类型 ------------------------------------------
 
-// TODO: 高级类型
+// -------------------------------Partial 不完整的,残缺的 ------------------------------
 
-// Partial 不完整的,残缺的
 type person2 = Partial<Person>; // 变成所有的参数可选
 // person2 === {name?: string; age?: number}
 
@@ -17,7 +17,8 @@ type person2 = Partial<Person>; // 变成所有的参数可选
 //     [P in keyof T]?: T[P];
 // };
 
-// Required 必需的
+// -------------------------------Required 必需的 --------------------------------------
+
 type person3 = Required<Person>;
 // person3 === {name: string; age: number}
 
@@ -26,7 +27,8 @@ type person3 = Required<Person>;
 //     [P in keyof T]-?: T[P];
 // };
 
-// Readonly 只读
+// -------------------------------Readonly 只读 --------------------------------------
+
 type person4 = Readonly<Person>;
 // person4 === {
 //        readonly name: string;
@@ -38,7 +40,8 @@ type person4 = Readonly<Person>;
 //     [P in K]: T[P];
 // };
 
-// Pick 挑选
+// -------------------------------Pick 挑选 --------------------------------------
+
 type person5 = Pick<Person, "name">;
 // person5 === {name: string}
 
@@ -47,7 +50,8 @@ type person5 = Pick<Person, "name">;
 //     [P in K]: T[P];
 // };
 
-//  Record 改变类型 
+// -------------------------------Record 改变类型  --------------------------------------
+
 type person6 = Record<'name' | 'age', string>
 // person6 === {name: string; age: string}
 
@@ -56,19 +60,20 @@ type person6 = Record<'name' | 'age', string>
 //     [P in K]: T;
 // };
 
-// TODO: 条件类型
+// -------------------------------条件类型 --------------------------------------
 
-// T extends U ? X : Y   条件表达式
+// T extends U ? X : Y   条件表达式  TypeScript2.8引入
 
 type TypeName<T> =
     T extends string ? "string" :
-    T extends number ? "number" :
-    T extends boolean ? "boolean" :
-    T extends undefined ? "undefined" :
-    T extends Function ? "function" :
-    "object";
+    T extends number ? "number" : "object";
 type T1 = TypeName<string> //  string
 type T2 = TypeName<string[]> //object 类型
+
+// 条件表达式的用法
+interface Id { id: number }
+interface Name { name: string }
+type IdOrName<T extends number | string> = T extends number ? Id : Name;
 
 // 分布式条件类型 
 // (A|B) extends U ? X : Y   =>(A extends U ? X : Y) | (B extends U ? X : Y)
@@ -181,8 +186,24 @@ let color: Colors; // let color: "red" | "blue"
 color = 'red' // Ok
 color = 'blue' // Ok
 
-// color = 'yellow' // Error
+// 元组 转换成联合类型 
+declare const ButtonTypes: ["default", "primary"];
+export declare type ButtonType = (typeof ButtonTypes)[number]; //  "default" | "primary"
 
+// 或者 利用const 断言实现
+let y2 = ["default", "primary"] as const
+type Data2 = typeof y2[number]; //  "default" | "primary"
+
+// 联合类型 另类写法
+// type Record<K extends string | number | symbol, T> = { [P in K]: T; }
+
+type Coord = Record<'x' | 'y', number>;
+//   type Coord = {
+//     x: number;
+//     y: number;
+// }
+
+// color = 'yellow' // Error
 
 // -----TypeScript 3.4 引入了一种新的字面量构造方式，也称为 const 断言-------
 
@@ -221,3 +242,6 @@ let foo11 = {
 // foo11.contents = [];  // error!
 
 foo11.contents.push(5); // 但是 数组 还是可以正常的设置参数 
+
+
+

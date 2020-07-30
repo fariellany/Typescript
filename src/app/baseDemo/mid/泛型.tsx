@@ -76,3 +76,22 @@ function createInstance<A extends Animal>(c: new () => A): A {
 createInstance(Lion).keeper.nametag;  // typechecks!
 createInstance(Bee).keeper.hasMask;   // typechecks!
 // createInstance(ZooKeeper).keeper.hasMask;   // 错误
+
+
+// -------------------------------声明 propmise 类型 --------------------------------------
+interface IResponse<T> {
+    message: string,
+    result: T, //  number[]
+    success: boolean,
+}
+async function getResult(): Promise<IResponse<number[]>> {
+    return {
+        message: '获取成功',
+        result: [1, 2, 3],
+        success: true,
+    }
+}
+getResult()
+    .then(result => {
+        console.log(result.result) // [1,2,3]
+    })

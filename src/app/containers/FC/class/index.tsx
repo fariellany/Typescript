@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Header } from './../sfc/index';
+import { Header } from '../sfc/index';
 
 // 仅代表类型
 interface Props {
