@@ -7,6 +7,7 @@ import './baseDemo';
 
 export const App = hot(module)(() => (
     <Switch>
-        <Route path="/" component={ButtonDemo} />
+        <Route path="/" exact component={TodoApp} />
+        <Route path="/demo" component={ButtonDemo} />
     </Switch>
 ));

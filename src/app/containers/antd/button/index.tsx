@@ -7,13 +7,14 @@ export default () => {
         <React.Fragment>
             <Button
                 text='按钮'
-                type='default'
+                styleType='default'
+                autoFocus
                 size='xm'
                 onClick={() => { alert('我点了！！！') }}
             />
             <Button
                 text='按钮'
-                type='danger'
+                styleType='danger'
                 size='lg'
             />
             <User />
