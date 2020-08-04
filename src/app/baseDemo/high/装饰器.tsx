@@ -164,7 +164,7 @@ function log(target: any, propertyKey: string) {
 }
 class Calculator {
     @log
-    public num: number;
+    public num!: number;
     square() {
         return this.num * this.num;
     }

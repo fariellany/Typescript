@@ -24,7 +24,7 @@ let ro: ReadonlyArray<number> = at1; //设置为只读
 
 interface Config {
     width?: number;
-    // [propName: string]: any;  // 方法2 添加字符串索引签名：
+    [propName: string]: any;  // 方法2 添加字符串索引签名：
 }
 
 function CalculateAreas(config: Config): { area: number } {
@@ -36,7 +36,7 @@ function CalculateAreas(config: Config): { area: number } {
 }
 
 // 会认为传入的参数是widdth，并不是width。 其实是错误的
-let mySquare = CalculateAreas({ widdth: 5 });
+// let mySquare = CalculateAreas({ widdth: 5 });
 
 // 方法1
 let mySquare1 = CalculateAreas({ widdth: 5 } as Config)
@@ -72,11 +72,11 @@ myObject = {
 
 interface ClockInterface {
     currentTime: Date;
-    setTime(d: Date); //在接口定义一个方法
+    setTime(d: Date): void; //在接口定义一个方法
 }
 
 class Clock implements ClockInterface {
-    currentTime: Date;
+    currentTime!: Date;
     constructor(h: number, m: number) { }
 
     setTime(d: Date) { //必须要在类中实现
@@ -101,10 +101,10 @@ interface Square extends Shape, PenStroke {
     sideLength: number;
 }
 
-let square: Square
-square.color = "blue";
-square.sideLength = 10;
-square.penWidth = 5.0;
+let square!: Square
+square.color = "blue";  // OK
+square.sideLength = 10; // OK
+square.penWidth = 5.0; // OK
 
 // -------------------------------混合类型 --------------------------------------
 
@@ -145,9 +145,9 @@ class TextBox extends Control {
 }
 
 // 错误：“Image”类型缺少“state”属性。
-class ImageT implements SelectableControl {
-    select() { } //需要继承 Control 类里面的 state 属性
-}
+// class ImageT implements SelectableControl  {
+//     select() { } //需要继承 Control 类里面的 state 属性
+// }
 
 // -------------------------------附加 --------------------------------------
 

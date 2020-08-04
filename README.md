@@ -48,3 +48,5 @@ $ npm run deploy
 # License
 
 MIT
+
+## [地址](https://github.com/rokoroku/react-redux-typescript-boilerplate)

@@ -21,7 +21,7 @@ interface Props {
 }
 
 export const Custom = ({
-    text
+    count
 }: Props): JSX.Element => {
     // 定义 self 函数方法
     const fun = React.useCallback((text: string): JSX.Element => {

@@ -27,8 +27,8 @@ genericity('1');
 // -------------------------------泛型类 --------------------------------------
 
 class GenericNumber<T> {
-    zeroValue: T;
-    add: (x: T, y: T) => T;
+    zeroValue!: T;
+    add!: (x: T, y: T) => T;
 }
 
 let myGenericNumber = new GenericNumber<number>();
@@ -50,23 +50,23 @@ getProperty(x111, "a"); // okay
 // -------------------------------使用类类型 --------------------------------------
 
 class BeeKeeper {
-    hasMask: boolean;
+    hasMask!: boolean;
 }
 
 class ZooKeeper {
-    nametag: string;
+    nametag!: string;
 }
 
 class Animal {
-    numLegs: number;
+    numLegs!: number;
 }
 
 class Bee extends Animal {
-    keeper: BeeKeeper; // numLegs: number; Animal 上面的
+    keeper!: BeeKeeper; // numLegs: number; Animal 上面的
 }
 
 class Lion extends Animal {
-    keeper: ZooKeeper; // numLegs: number; Animal 上面的
+    keeper!: ZooKeeper; // numLegs: number; Animal 上面的
 }
 
 function createInstance<A extends Animal>(c: new () => A): A {

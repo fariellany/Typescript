@@ -40,8 +40,8 @@ getCount([1, 2, 3], (...args: number[]): number => args.reduce((a, b) => a + b, 
 
 let funcA = (arg: number | string): void => { }
 let funcB = (arg: number): void => { }
-funcA = funcB
-funcB = funcA
+// funcA = funcB  // OK
+// funcB = funcA // OK
 
 // -------------------------------返回值类型 --------------------------------------
 
@@ -89,8 +89,8 @@ class Size {
 
 let s55: Size;
 let a55: AnimalDom;
-a55 = s55;  // OK
-s55 = a55;  // OK
+// a55 = s55;  // OK
+// s55 = a55;  // OK
 
 // -------------------------------泛型 --------------------------------------
 
@@ -104,4 +104,4 @@ let data2: Date1<string>
 interface Date2<T> { };//没有定义参数 
 let data11: Date2<number>;
 let data22: Date2<string>;
-data11 = data22   //ok
+// data11 = data22   //ok

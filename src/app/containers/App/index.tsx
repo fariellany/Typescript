@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useTodoActions } from 'app/actions';
 import { RootState } from 'app/reducers';
 import { TodoModel } from 'app/models';
-import { Header, TodoList, Footer, Demo } from 'app/components';
+import { Header, TodoList, Footer } from 'app/components';
 
 const FILTER_VALUES = (Object.keys(TodoModel.Filter) as (keyof typeof TodoModel.Filter)[]).map(
     (key) => TodoModel.Filter[key]
