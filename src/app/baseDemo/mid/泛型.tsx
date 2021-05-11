@@ -5,9 +5,9 @@
 function identity<T>(params: T): T {
     return params;
 }
+
 let output = identity<string>('myString');
 console.log(output); // myString
-
 
 // 两种泛型类型写法
 function identity1<T>(arg: T): T {
@@ -84,6 +84,7 @@ interface IResponse<T> {
     result: T, //  number[]
     success: boolean,
 }
+// 定义是个promise
 async function getResult(): Promise<IResponse<number[]>> {
     return {
         message: '获取成功',

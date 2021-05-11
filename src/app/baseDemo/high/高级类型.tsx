@@ -11,6 +11,7 @@ interface Person {
 
 type person2 = Partial<Person>; // 变成所有的参数可选
 // person2 === {name?: string; age?: number}
+const person21:person2={}  // 可以全部为空
 
 // 源码
 // type Partial<T> = {
@@ -75,7 +76,7 @@ interface Id { id: number }
 interface Name { name: string }
 type IdOrName<T extends number | string> = T extends number ? Id : Name;
 
-// 分布式条件类型 
+// 分布式条件类型
 // (A|B) extends U ? X : Y   =>(A extends U ? X : Y) | (B extends U ? X : Y)
 
 // Exclude<T,U>  可以从类型T中过滤掉可以赋值给类型U的类型
@@ -102,7 +103,7 @@ class C {
 type T20 = InstanceType<typeof C>;  // C
 type T21 = InstanceType<any>;  // any
 type T22 = InstanceType<never>;  // any
-// type T23 = InstanceType<string>;  // Error 
+// type T23 = InstanceType<string>;  // Error
 // type T24 = InstanceType<Function>;  // Error
 
 //------------------自定义函数方法--------------------------------------
@@ -182,11 +183,11 @@ const COLORS = {
 // 首先通过typeof操作符获取Colors变量的类型，然后通过keyof操作符获取该类型的所有键，
 // 即字符串字面量联合类型 'red' | 'blue'
 type Colors = keyof typeof COLORS
-let color: Colors; // let color: "red" | "blue" 
+let color: Colors; // let color: "red" | "blue"
 color = 'red' // Ok
 color = 'blue' // Ok
 
-// 元组 转换成联合类型 
+// 元组 转换成联合类型
 declare const ButtonTypes: ["default", "primary"];
 export declare type ButtonType = (typeof ButtonTypes)[number]; //  "default" | "primary"
 
@@ -236,12 +237,12 @@ type Locale = typeof locales[number]["locale"]; // type Locale = "zh-CN" | "en"
 let foo11 = {
     name: "foo",
     contents: arr,
-} as const; //转换成只读属性  
+} as const; //转换成只读属性
 
 // foo11.name = "bar";   // error!
 // foo11.contents = [];  // error!
 
-foo11.contents.push(5); // 但是 数组 还是可以正常的设置参数 
+foo11.contents.push(5); // 但是 数组 还是可以正常的设置参数
 
 
 
