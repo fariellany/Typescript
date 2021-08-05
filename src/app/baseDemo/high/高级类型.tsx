@@ -1,9 +1,8 @@
 
 //高级类型与条件类型(Readonly, Partial, Pick, Record)
-
 interface Person {
-    name: string;
-    age?: number;
+  name: string;
+  age?: number;
 }
 // -------------------------------  高级类型 ------------------------------------------
 
@@ -11,7 +10,7 @@ interface Person {
 
 type person2 = Partial<Person>; // 变成所有的参数可选
 // person2 === {name?: string; age?: number}
-const person21:person2={}  // 可以全部为空
+const person21: person2 = {}  // 可以全部为空
 
 // 源码
 // type Partial<T> = {
@@ -29,7 +28,6 @@ type person3 = Required<Person>;
 // };
 
 // -------------------------------Readonly 只读 --------------------------------------
-
 type person4 = Readonly<Person>;
 // person4 === {
 //        readonly name: string;
@@ -66,8 +64,8 @@ type person6 = Record<'name' | 'age', string>
 // T extends U ? X : Y   条件表达式  TypeScript2.8引入
 
 type TypeName<T> =
-    T extends string ? "string" :
-    T extends number ? "number" : "object";
+  T extends string ? "string" :
+  T extends number ? "number" : "object";
 type T1 = TypeName<string> //  string
 type T2 = TypeName<string[]> //object 类型
 
@@ -90,14 +88,14 @@ type T04 = NonNullable<string | number | undefined>;  // string | number
 
 // RetrenType<T> 可以获取一个函数返回值的类型
 function f1(s: string) {
-    return { a: 1, b: s };
+  return { a: 1, b: s };
 }
 type T14 = ReturnType<typeof f1>;  // { a: number, b: string }
 
 // InstanceType 取构造函数类型的实例类型。
 class C {
-    x = 0;
-    y = 0;
+  x = 0;
+  y = 0;
 }
 
 type T20 = InstanceType<typeof C>;  // C
@@ -108,9 +106,9 @@ type T22 = InstanceType<never>;  // any
 
 //------------------自定义函数方法--------------------------------------
 interface AccountInfo {
-    age: number,
-    phone: string,
-    email: string
+  age: number,
+  phone: string,
+  email: string
 }
 
 //------------------------自定义omit方法-------------------------------
@@ -125,21 +123,22 @@ interface AccountInfo {
 //  typeof 操作符可以用来获取一个变量或对象的类型。
 
 interface PersonTypeOf {
-    name: string;
-    age: number;
+  name: string;
+  age: number;
 }
 const sem112: PersonTypeOf = { name: "semlinker", age: 30 };
 type Sem11 = typeof sem112; // type Sem = Person 通过 typeof 操作符获取 sem变量类型
 const lolo: Sem11 = { name: "lolo", age: 5 } //
 
 // 也可以针对嵌套的对象 返回对象的类型
+// typeof 只针对于 已经声明好了的对象
 const kakuqo = {
-    name: "kakuqo",
-    age: 30,
-    address: {
-        province: '福建',
-        city: '厦门'
-    }
+  name: "kakuqo",
+  age: 30,
+  address: {
+    province: '福建',
+    city: '厦门'
+  }
 }
 type Kakuqo = typeof kakuqo; // 查询对象的类型
 /*
@@ -155,7 +154,7 @@ type Kakuqo = typeof kakuqo; // 查询对象的类型
 
 // typeof 也可以获取函数对象的类型
 function toArray(x: number): Array<number> {
-    return [x];
+  return [x];
 }
 type Func = typeof toArray; // -> (x: number) => number[]
 
@@ -164,24 +163,24 @@ type Func = typeof toArray; // -> (x: number) => number[]
 
 //------------------ keyof typeof 使用------------------------
 const cats = {
-    'name': '张三',
-    'age': 20,
-    'color': 'red',
+  'name': '张三',
+  'age': 20,
+  'color': 'red',
 };
 
 function f(a: keyof typeof cats) {
-    console.log(a);
+  console.log(a);
 }
 f('name') //OK
 // f('a') //  ERROR 没有此参数
 
 const COLORS = {
-    red: 'red',
-    blue: 'blue'
+  red: 'red',
+  blue: 'blue'
 }
 
 // 首先通过typeof操作符获取Colors变量的类型，然后通过keyof操作符获取该类型的所有键，
-// 即字符串字面量联合类型 'red' | 'blue'
+// ? 即字符串字面量联合类型 'red' | 'blue' 可以通过管道(|)将变量设置多种类型)
 type Colors = keyof typeof COLORS
 let color: Colors; // let color: "red" | "blue"
 color = 'red' // Ok
@@ -190,12 +189,13 @@ color = 'blue' // Ok
 // 元组 转换成联合类型
 declare const ButtonTypes: ["default", "primary"];
 export declare type ButtonType = (typeof ButtonTypes)[number]; //  "default" | "primary"
+export declare type ButtonType2 = (typeof ButtonTypes); //  ["default","primary"]
 
 // 或者 利用const 断言实现
 let y2 = ["default", "primary"] as const
 type Data2 = typeof y2[number]; //  "default" | "primary"
 
-// 联合类型 另类写法
+//
 // type Record<K extends string | number | symbol, T> = { [P in K]: T; }
 
 type Coord = Record<'x' | 'y', number>;
@@ -208,6 +208,7 @@ type Coord = Record<'x' | 'y', number>;
 
 // -----TypeScript 3.4 引入了一种新的字面量构造方式，也称为 const 断言-------
 
+//  as const 也可以当作 readonly 使用
 let x12 = "hello" as const;
 type X = typeof x12; // type X = "hello"
 
@@ -219,30 +220,37 @@ let z = { text: "hello" } as const;
 type Z = typeof z; // let z: { readonly text: "hello"; }
 
 const locales = [
-    {
-        locale: "zh-CN",
-        language: "中文"
-    },
-    {
-        locale: "en",
-        language: "English"
-    }
+  {
+    locale: "zh-CN",
+    language: "中文"
+  },
+  {
+    locale: "en",
+    language: "English"
+  }
 ] as const;
 
 //  number 相当于 下标
 type Locale = typeof locales[number]["locale"]; // type Locale = "zh-CN" | "en"
 
-// const 只适用于 enum members,string, number, boolean, array,object 常量
-
+// ? const 只适用于 enum members,string, number, boolean, array,object 常量
 let foo11 = {
-    name: "foo",
-    contents: arr,
+  name: "foo",
+  contents: arr,
 } as const; //转换成只读属性
 
 // foo11.name = "bar";   // error!
 // foo11.contents = [];  // error!
-
 foo11.contents.push(5); // 但是 数组 还是可以正常的设置参数
 
+// ? 类型索引 keyof 类似于 Object.keys ，用于获取一个接口中 Key 的联合类型。
+// ? https://segmentfault.com/a/1190000023800536
+interface Button {
+  type: 2222
+  text: 22222
+}
 
-
+type ButtonKeys = keyof Button
+const types: ButtonKeys = 'type'
+// 等效于
+type ButtonKeys1 = "type" | "text"

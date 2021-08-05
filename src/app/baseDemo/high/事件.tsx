@@ -13,17 +13,16 @@ import React from 'react';
 // TransitionEvent<T = Element> 过渡事件对象
 // HTMLDivElement<T = Element> div点击事件 =>给div绑定点击事件
 
-
 // react原生事件
 
 // React.FormEvent<HTMLInputElement> => input 输入事件
 //  React.MouseEvent => button 点击事件
 
 interface IProps {
-    onClick(event: React.MouseEvent<HTMLDivElement>): void;
+  onClick(event: React.MouseEvent<HTMLDivElement>): void;
 }
 
-//无状态组件 用  React.SFC 定义
-const Button: React.SFC<IProps> = ({ onClick, children }) => {
-    return <div onClick={onClick}>{children}</div>;
+// 无状态组件 用  React.FC 定义
+const Button: React.FC<IProps> = ({ onClick, children }) => {
+  return <div onClick={onClick}>{children}</div>;
 };

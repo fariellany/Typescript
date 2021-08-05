@@ -3,7 +3,7 @@
 // -------------------------------参数个数 --------------------------------------
 
 interface info {
-    age: number
+  age: number
 }
 let infos: info
 const info1 = { name: 2 }
@@ -31,10 +31,10 @@ x11 = x22
 // -------------------------------可选参数 --------------------------------------
 
 const getCount = (arr: number[], callback: (...args: number[]) => number): number => {
-    return callback(...arr)
+  return callback(...arr)
 }
 
-getCount([1, 2, 3], (...args: number[]): number => args.reduce((a, b) => a + b, 0)) // 6 
+getCount([1, 2, 3], (...args: number[]): number => args.reduce((a, b) => a + b, 0)) // 6
 
 // -------------------------------函数双向斜变 (参数类型)------------------------------
 
@@ -47,7 +47,7 @@ let funcB = (arg: number): void => { }
 
 let x5 = (): string | number => 0
 let x6 = (): string => '0'
-x5 = x6   // 返回值类型都是  string 
+x5 = x6   // 返回值类型都是  string
 // x6 = x5 // 报错 x6 没有  number类型
 
 // -------------------------------函数重载 --------------------------------------
@@ -55,12 +55,12 @@ x5 = x6   // 返回值类型都是  string
 function mergeDate(arg1: number, arg2: number): number
 function mergeDate(arg1: string, arg2: string): string //两个重载
 function mergeDate(arg1: any, arg2: any): any {
-    return arg1 + arg2
+  return arg1 + arg2
 }
 
 function mergeDate1(arg1: string, arg2: string): string //一个重载
 function mergeDate1(arg1: any, arg2: any): any {
-    return arg1 + arg2
+  return arg1 + arg2
 }
 let sum1 = mergeDate
 // sum1 = mergeDate1 // 报错 mergeDate1 缺少个函数重载
@@ -72,19 +72,19 @@ let sum1 = mergeDate
 //  TODO: 类的比较以及兼容性问题
 
 class AnimalDom {
-    // age: number
-    // name111: string
-    constructor(public age: number) {
-        // this.name = name
-        // this.age = age
-    }
+  // age: number
+  // name111: string
+  constructor(public age: number) {
+    // this.name = name
+    // this.age = age
+  }
 }
 
 class Size {
-    age: number
-    constructor(age: number) {
-        this.age = age
-    }
+  age: number
+  constructor(age: number) {
+    this.age = age
+  }
 }
 
 let s55: Size;
@@ -95,13 +95,13 @@ let a55: AnimalDom;
 // -------------------------------泛型 --------------------------------------
 
 interface Date1<T> {
-    data: T //有参数定义
+  data: T //有参数定义
 }
 let data1: Date1<number>
 let data2: Date1<string>
 // data1 = data2 //  不能将类型“Date1<string>”分配给类型“Date1<number>”。
 
-interface Date2<T> { };//没有定义参数 
+interface Date2<T> { };//没有定义参数
 let data11: Date2<number>;
 let data22: Date2<string>;
 // data11 = data22   //ok

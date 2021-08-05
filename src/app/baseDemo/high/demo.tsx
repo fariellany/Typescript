@@ -1,22 +1,22 @@
 
 // * 1: 声明数组对象格式
-let data=[
-  {name:'张三',age:11},
-  {name:'李四',age:12}
+let data = [
+  { name: '张三', age: 11 },
+  { name: '李四', age: 12 }
 ]
 
-interface obj{
-   name:string,
-   age:number,
+interface obj {
+  name: string,
+  age: number,
 }
 // 声明数组对象 (两种方式都行)
-const lists:Array<obj>=data
-const list2:obj[]=data
-const list3:Partial<obj[]>=data // 或者没有
+const lists: Array<obj> = data
+const list2: obj[] = data
+const list3: Partial<obj[]> = data // 或者没有
 
 // 只取对象的值
-const adds=function name(objs:typeof data) {
-   return objs[0].name
+const adds = function name(objs: typeof data) {
+  return objs[0].name
 }
 console.log(adds(data));
 
